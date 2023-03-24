@@ -52,9 +52,9 @@ app.use("/api/v1/resources", resouces)
 app.get("/admin", async (req, res) => {
     return res.sendStatus(200)
 })
-// app.get("*", async (req, res) => {
-//     return res.sendFile(path.join(__dirname, "view", "index.html"))
-// })
+app.get("*", async (req, res) => {
+    return res.sendFile(path.join(__dirname, "view", "index.html"))
+})
 app.use(error)
 //===================Global Middleware End==============
 //=======================Logger===========

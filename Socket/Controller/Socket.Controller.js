@@ -67,13 +67,13 @@ class Socket {
         console.log({ result })
         const getAllUsersFromCurrentRoom = await getUsersFromCurrentRoom(roomName, roomID)
         if (result) {
-            callback({ alert: "ok", status: 200 })
             //Case-1, send message to all user which are already in room
             socket.to(roomID).emit(EVENTS.NEW_USER_ADDED, { ...result, roomName })
             // send me 
             socket.emit(EVENTS.ALL_USER_IN_CURRENT_ROOM, getAllUsersFromCurrentRoom)
             //Case-2, users, which are not in rooms
             chatRoom.except(roomID).emit(EVENTS.NEW_USER_ADDED_TO_ALL, result)
+            callback({ alert: "ok", status: 200 })
         }
     }
     onleaveRoom = async (params, chatRoom, socket) => {
